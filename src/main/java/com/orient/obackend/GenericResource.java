@@ -21,6 +21,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.persistence.Query;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.POST;
 
 /**
  * REST Web Service
@@ -71,7 +74,6 @@ public class GenericResource {
      *
      */
     @PUT
-
     public Response putXml(Routes route) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("oBackEnd");
@@ -81,5 +83,22 @@ public class GenericResource {
         em.persist(route);
         em.getTransaction().commit();
         return Response.ok().entity("Route added").build();
+    }
+
+    @DELETE
+    public Response deleteRoute(Routes route) {
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("oBackEnd");
+        EntityManager em = entityManagerFactory.createEntityManager();
+        em.getTransaction().begin();
+
+        Routes toBeRemoved = em.merge(route);
+        em.remove(toBeRemoved);
+
+        // Query query=em.createNativeQuery("SELECT r FROM Routes r WHERE r.id = 1");
+        // query.
+        System.err.println("jes=" + route.getName());
+        em.getTransaction().commit();
+        return Response.ok().entity("Route deleted").build();
     }
 }

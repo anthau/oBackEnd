@@ -32,6 +32,20 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Routes.findByName", query = "SELECT r FROM Routes r WHERE r.name = :name")})
 public class Routes implements Serializable {
 
+    /**
+     * @return the city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city the city to set
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,6 +56,10 @@ public class Routes implements Serializable {
     @Size(max = 100)
     @Column(name = "name")
     private String name;
+
+    @Size(max = 100)
+    @Column(name = "city")
+    private String city;
 
     public Routes() {
     }
@@ -90,5 +108,5 @@ public class Routes implements Serializable {
     public String toString() {
         return "database.Routes[ id=" + id + " ]";
     }
-    
+
 }
