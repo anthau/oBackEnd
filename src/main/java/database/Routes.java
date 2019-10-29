@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "Routes")
 @XmlRootElement
 @NamedQueries({
+
     @NamedQuery(name = "Routes.findAll", query = "SELECT r FROM Routes r"),
     @NamedQuery(name = "Routes.findById", query = "SELECT r FROM Routes r WHERE r.id = :id"),
     @NamedQuery(name = "Routes.findByName", query = "SELECT r FROM Routes r WHERE r.name = :name")})
@@ -56,6 +57,19 @@ public class Routes implements Serializable {
     @Size(max = 100)
     @Column(name = "name")
     private String name;
+    
+    @Size(max = 100)
+    @Column(name = "map")
+    private String map;
+
+    public String getMap() {
+        return map;
+    }
+
+    public void setMap(String map) {
+        this.map = map;
+    }
+
 
     @Size(max = 100)
     @Column(name = "city")

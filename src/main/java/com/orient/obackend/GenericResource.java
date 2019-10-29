@@ -21,6 +21,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
 import javax.persistence.Query;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
@@ -39,6 +40,24 @@ public class GenericResource {
     //com.orient_oBackEnd_war_1.0-SNAPSHOTPU
     //@PersistenceContext(unitName = "com.orient_oBackEnd_war_1.0-SNAPSHOTPU")
     public GenericResource() {
+    }
+
+    @GET
+    @Path("/cities")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<String> getCities() throws JsonProcessingException {
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("oBackEnd");
+        EntityManager em = entityManagerFactory.createEntityManager();
+
+        em.getTransaction().begin();
+      
+        em.getTransaction().commit();
+        Query q=em.createNativeQuery("SELECT distinct city  FROM Routes");
+        
+        List<String> routes=q.getResultList();
+      
+        return routes;
     }
 
     /**
