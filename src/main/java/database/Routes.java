@@ -54,9 +54,25 @@ public class Routes implements Serializable {
     @NotNull
     @Column(name = "id")
     private Long id;
+   
+    
+    
     @Size(max = 100)
     @Column(name = "name")
     private String name;
+    
+    @Size(max = 100)
+    @Column(name = "ordernumber")
+    private String ordernumber;
+
+    public String getOrdernumber() {
+        return ordernumber;
+    }
+
+    public void setOrdernumber(String ordernumber) {
+        this.ordernumber = ordernumber;
+    }
+    
     
     @Size(max = 100)
     @Column(name = "map")

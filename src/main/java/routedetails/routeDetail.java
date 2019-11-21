@@ -41,16 +41,15 @@ public class routeDetail {
      * @return an instance of java.lang.String
      */
     @GET
-    //@Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public String getJson() throws JsonProcessingException {
-        //TODO return proper representation object
+
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("oBackEnd");
         EntityManager em = entityManagerFactory.createEntityManager();
         //    em.getTransaction().begin();
-
         ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(em.createNativeQuery("SELECT  * FROM routeDetail LEFT JOIN Checkpoints  ON routeDetail.checkpointid=Checkpoints.id  where routeDetail.routeID=1;").getResultList());
-       return jsonString;
+        return mapper.writeValueAsString(em.createNativeQuery("SELECT  * FROM routeDetail LEFT JOIN Checkpoints  ON routeDetail.checkpointid=Checkpoints.id  where routeDetail.routeID=1;").getResultList());
+     
     }
 
     /**
