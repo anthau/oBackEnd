@@ -29,7 +29,9 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.orient.obackend.CheckpointResource.class);
         resources.add(com.orient.obackend.GenericResource.class);
+        resources.add(routedetails.routeDetail.class);
     }
     
 }

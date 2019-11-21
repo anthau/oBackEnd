@@ -43,6 +43,24 @@ public class GenericResource {
     }
 
     @GET
+    @Path("/Maps")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<String> getMaps() throws JsonProcessingException {
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("oBackEnd");
+        EntityManager em = entityManagerFactory.createEntityManager();
+
+        em.getTransaction().begin();
+      
+        em.getTransaction().commit();
+        Query q=em.createNativeQuery("SELECT distinct map  FROM Routes");
+        
+        List<String> routes=q.getResultList();
+      
+        return routes;
+    }
+
+    @GET
     @Path("/cities")
     @Produces(MediaType.APPLICATION_JSON)
     public List<String> getCities() throws JsonProcessingException {
