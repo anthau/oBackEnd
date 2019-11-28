@@ -7,6 +7,7 @@ package routedetails;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import details.RouteDetail;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,6 +19,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * REST Web Service
@@ -54,10 +56,20 @@ public class routeDetail {
 
     /**
      * PUT method for updating or creating an instance of routeDetail
-     * @param content representation for the resource
+     * @param detail
+     * @return 
      */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(String content) {
+    public Response putJson(RouteDetail  detail) {
+            System.err.println("moi");
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("oBackEnd");
+            EntityManager em = entityManagerFactory.createEntityManager();
+            em.getTransaction().begin();
+            em.persist(detail);
+            em.getTransaction().commit();
+          
+           return  Response.ok().entity("Checkpoint added").build();
+        
     }
 }
