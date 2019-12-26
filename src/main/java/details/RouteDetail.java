@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RouteDetail.find", query = "SELECT r FROM RouteDetail r"),
     @NamedQuery(name = "RouteDetail.findAll", query = "SELECT r FROM RouteDetail r"),
     @NamedQuery(name = "RouteDetail.findById", query = "SELECT r FROM RouteDetail r WHERE r.id = :id"),
-    @NamedQuery(name = "RouteDetail.findByCheckpointid", query = "SELECT r FROM RouteDetail r WHERE r.checkpointid = :checkpointid"),
+    @NamedQuery(name = "RouteDetail.findByCheckpointid", query = "SELECT r FROM RouteDetail r  where r.checkpointid=:check AND r.routeID=:route"  ),
     @NamedQuery(name = "RouteDetail.findByRouteID", query = "SELECT r FROM RouteDetail r WHERE r.routeID = :routeID")})
 public class RouteDetail implements Serializable {
 
@@ -98,13 +98,13 @@ public class RouteDetail implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof RouteDetail)) {
-            return false;
-        }
+       System.out.println("jes1");
         RouteDetail other = (RouteDetail) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
+        if (other.getCheckpointid()==  this.checkpointid ) {
+           
+         return true;
         }
+
         return true;
     }
 
