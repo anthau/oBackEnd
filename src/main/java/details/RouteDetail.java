@@ -31,8 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RouteDetail.find", query = "SELECT r FROM RouteDetail r"),
     @NamedQuery(name = "RouteDetail.findAll", query = "SELECT r FROM RouteDetail r"),
     @NamedQuery(name = "RouteDetail.findById", query = "SELECT r FROM RouteDetail r WHERE r.id = :id"),
-    @NamedQuery(name = "RouteDetail.findByCheckpointid", query = "SELECT r FROM RouteDetail r  where r.checkpointid=:check AND r.routeID=:route"  ),
+
+    @NamedQuery(name = "RouteDetail.findByCheck", query = "SELECT r FROM RouteDetail r  WHERE r.checkpointid=:check"  ),
+    @NamedQuery(name = "RouteDetail.findByCheckpointid", query = "SELECT r FROM RouteDetail r  WHERE r.checkpointid=:check AND r.routeID=:route"  ),
     @NamedQuery(name = "RouteDetail.findByRouteID", query = "SELECT r FROM RouteDetail r WHERE r.routeID = :routeID")})
+
 public class RouteDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
