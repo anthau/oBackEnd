@@ -97,7 +97,7 @@ public class routeDetail {
         EntityManager em = entityManagerFactory.createEntityManager();
         
     
-       List <RouteDetail>a= em.createNamedQuery("Checkpoints.findById").setParameter("route", detail.getRouteID()).setParameter("check", detail.getCheckpointid()).getResultList();
+       List <RouteDetail>a= em.createNamedQuery("RouteDetail.findByCheckpointid").setParameter("route", detail.getRouteID()).setParameter("check", detail.getCheckpointid()).getResultList();
 
         em.getTransaction().begin();
         em.remove(a.get(0));
