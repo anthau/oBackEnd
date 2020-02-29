@@ -49,6 +49,22 @@ public class CheckpointResource {
      * @return an instance of java.lang.String
      * @throws com.fasterxml.jackson.core.JsonProcessingException
      */
+        @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getXml1() throws JsonProcessingException {
+        //TODO return proper representation object
+        Checkpoints s;
+        
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("oBackEnd");
+        EntityManager em = entityManagerFactory.createEntityManager();
+        //    em.getTransaction().begin();
+
+        ObjectMapper mapper = new ObjectMapper();
+        
+        String jsonString = mapper.writeValueAsString(em.createNamedQuery("Checkpoints.findAll").getResultList());
+        return "jsonString";
+    }
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getXml() throws JsonProcessingException {
